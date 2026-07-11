@@ -1,0 +1,57 @@
+iniciar-programa
+	define-nueva-instruccion gira-derecha como inicio
+    	repetir 3 veces inicio
+        	gira-izquierda;
+        fin;
+    fin;
+	define-nueva-instruccion zumbador como inicio
+    	si frente-libre entonces inicio
+        	deja-zumbador;
+        	avanza;
+        fin;
+    fin;
+    inicia-ejecucion
+    	si frente-libre y orientado-al-norte y izquierda-bloqueada entonces inicio
+        	deja-zumbador;
+            gira-derecha;
+            avanza;
+            gira-izquierda;
+        fin;
+    	si frente-libre entonces inicio
+            repetir 2 veces zumbador;
+        fin;
+        gira-derecha;
+        avanza;
+        gira-derecha;
+        mientras frente-libre hacer inicio
+            zumbador;
+        fin;
+        deja-zumbador;
+        gira-izquierda;
+        avanza;
+        gira-izquierda;
+        mientras frente-libre hacer inicio
+            zumbador;
+            	si izquierda-libre entonces inicio
+                	gira-izquierda;
+                    avanza;
+            			si izquierda-libre y junto-a-zumbador entonces inicio
+                	  		gira-izquierda;
+                      		gira-izquierda;
+                      		avanza;
+                      		gira-izquierda;       
+                		fin
+                			sino inicio
+                			gira-izquierda;
+                    		gira-izquierda;
+                    		avanza;
+                    		deja-zumbador;
+                    		avanza;
+                    		gira-izquierda;
+                            gira-izquierda;
+                		fin;
+        fin;
+        fin;
+        apagate;
+    termina-ejecucion
+finalizar-programa
