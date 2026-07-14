@@ -1,0 +1,66 @@
+iniciar-programa
+	define-nueva-instruccion infinito como inicio
+    	mientras frente-libre hacer inicio
+        	avanza;
+        fin;
+    fin;
+	define-nueva-instruccion gira-derecha como inicio
+    	repetir 3 veces inicio
+        	gira-izquierda;
+        fin;
+    fin;
+    define-nueva-instruccion salta como inicio
+    	gira-izquierda;
+        avanza;
+        gira-derecha;
+			si frente-bloqueado entonces inicio
+            	apagate;
+            fin
+            sino inicio
+        		avanza;
+        		gira-derecha;
+        		avanza;
+        		gira-izquierda;
+            fin;
+        si frente-libre entonces inicio
+        	avanza;
+        fin
+        sino inicio
+        	gira-izquierda;
+        	avanza;
+        	gira-derecha;
+            	si frente-bloqueado entonces inicio
+            		apagate;
+            	fin
+            sino inicio
+        		avanza;
+        		gira-derecha;
+        		avanza;
+        		gira-izquierda;
+            fin;
+        fin;
+    fin;
+
+    inicia-ejecucion
+		si orientado-al-norte y derecha-libre entonces inicio
+        	gira-derecha;
+        fin
+        sino inicio
+        	avanza;
+            gira-derecha;
+            avanza;
+            gira-derecha;
+            avanza;
+            gira-izquierda;
+            	mientras frente-bloqueado hacer inicio
+                	salta;
+                fin;
+        fin;
+        mientras frente-libre hacer inicio
+            infinito;
+            	mientras frente-bloqueado hacer inicio
+                	salta;
+                fin;
+        fin;
+    termina-ejecucion
+finalizar-programa

@@ -1,0 +1,204 @@
+iniciar-programa
+	define-nueva-instruccion gira-derecha como inicio
+    	repetir 3 veces inicio
+        	gira-izquierda;
+        fin;
+    fin;
+    
+    define-nueva-instruccion orientar como inicio
+    	si orientado-al-este entonces inicio
+        	gira-izquierda;
+        fin;
+        si orientado-al-sur entonces inicio
+        	gira-izquierda;
+            gira-izquierda;
+        fin;
+        si orientado-al-oeste entonces inicio
+        	gira-derecha;
+        fin;
+	fin;
+    
+  define-nueva-instruccion buscar-salida como inicio 
+    si frente-libre y izquierda-libre y derecha-libre entonces inicio
+      avanza;
+      si frente-libre y izquierda-libre y derecha-libre entonces inicio 
+      	gira-izquierda;
+        gira-izquierda;
+        avanza;
+        avanza;
+        si frente-libre y derecha-bloqueada entonces inicio 
+        	gira-izquierda;
+            gira-izquierda;
+            avanza;
+            apagate;
+        fin;
+         si frente-libre y izquierda-bloqueada entonces inicio 
+        	gira-izquierda;
+            gira-izquierda;
+            avanza;
+            apagate;
+        fin;
+      fin;
+      si frente-libre y izquierda-libre y derecha-libre entonces inicio 
+      	gira-izquierda;
+        gira-izquierda;
+        avanza;
+        avanza;
+        si frente-libre y izquierda-bloqueada entonces inicio 
+        	gira-izquierda;
+            gira-izquierda;
+            avanza;
+            apagate;
+        fin;
+      fin;
+       si frente-libre y derecha-bloqueada entonces inicio
+              gira-izquierda;
+              gira-izquierda;
+              avanza;
+              si frente-bloqueado entonces inicio
+                 gira-izquierda;
+                 avanza;
+                 apagate
+              fin;
+              avanza;
+                si frente-libre y izquierda-bloqueada entonces inicio
+                    gira-izquierda;
+                    gira-izquierda;
+                    avanza;
+                    gira-derecha;
+                    avanza;
+                    apagate;
+                fin;
+          fin
+          sino 
+              si frente-libre y izquierda-bloqueada entonces inicio
+                 gira-izquierda;
+                 gira-izquierda;
+                 avanza;
+                 si frente-bloqueado entonces inicio
+                   gira-derecha;
+                   avanza;
+                   apagate
+                 fin;
+                 avanza;
+                 si frente-libre y derecha-bloqueada entonces inicio
+                     gira-izquierda;
+                     gira-izquierda;
+                     avanza;
+                     gira-izquierda;
+                     avanza;
+                     apagate;
+                 fin;
+              fin;
+         si frente-bloqueado y derecha-bloqueada entonces inicio
+              gira-izquierda;
+              gira-izquierda;
+              avanza;
+              avanza;
+                si frente-libre y izquierda-bloqueada entonces inicio
+                    gira-izquierda;
+                    gira-izquierda;
+                    avanza;
+                    gira-derecha;
+                    avanza;
+                    apagate;
+                fin;
+          fin
+          sino 
+              si frente-bloqueado y izquierda-bloqueada entonces inicio
+                 gira-izquierda;
+                 gira-izquierda;
+                 avanza;
+                 avanza;
+                 si frente-libre y derecha-bloqueada entonces inicio
+                     gira-izquierda;
+                     gira-izquierda;
+                     avanza;
+                     gira-izquierda;
+                     avanza;
+                     apagate;
+                 fin;
+             fin;  
+       fin;
+  fin;
+    
+  define-nueva-instruccion esquinas como inicio
+      si frente-libre y izquierda-bloqueada entonces inicio
+         avanza;
+      fin
+      sino
+       si frente-libre y derecha-bloqueada entonces inicio
+         avanza;
+       fin;
+  fin;
+  
+  
+  	define-nueva-instruccion bloqueos como inicio
+            si frente-bloqueado y izquierda-libre y derecha-libre entonces inicio
+               gira-izquierda;
+               esquinas;
+               buscar-salida;
+               gira-izquierda;
+               gira-izquierda;
+               avanza;
+             fin;
+
+             si frente-bloqueado y izquierda-bloqueada y derecha-libre entonces inicio
+                gira-derecha;
+                avanza;
+             fin;
+
+             si frente-bloqueado y izquierda-libre y derecha-bloqueada entonces inicio
+                gira-izquierda;
+                avanza;
+             fin;
+             
+              si frente-libre y izquierda-bloqueada y derecha-libre entonces inicio
+                avanza;
+                esquinas;
+             fin;
+
+             si frente-libre y izquierda-libre y derecha-bloqueada entonces inicio
+               gira-izquierda;
+               avanza;
+             fin;
+    fin;
+ 
+  define-nueva-instruccion todoLibre como inicio
+   	si frente-libre y izquierda-libre y derecha-libre entonces inicio
+        buscar-salida;    
+    fin;
+    si frente-libre y izquierda-libre y derecha-bloqueada entonces inicio
+		avanza;   
+        si frente-libre y izquierda-libre y derecha-libre entonces inicio
+             buscar-salida;     
+        fin;
+    fin;
+    si frente-libre y izquierda-bloqueada y derecha-libre entonces inicio
+		avanza;
+        si frente-libre y izquierda-libre y derecha-libre entonces inicio
+            buscar-salida;    
+        fin;
+    fin
+    sino inicio
+     si frente-libre entonces inicio
+       avanza;
+       buscar-salida; 
+       esquinas;
+       fin;
+    fin;
+  fin; 
+
+    inicia-ejecucion
+     orientar;
+     mientras frente-bloqueado o frente-libre hacer inicio
+        mientras frente-libre hacer inicio
+            todoLibre;
+        fin; 
+        mientras frente-bloqueado hacer inicio
+           bloqueos;
+        fin;
+     fin;
+    apagate;
+    termina-ejecucion
+finalizar-programa

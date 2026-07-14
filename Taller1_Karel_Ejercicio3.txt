@@ -1,0 +1,81 @@
+iniciar-programa
+    define-nueva-instruccion gira-derecha como inicio
+    	repetir 3 veces inicio
+        	gira-izquierda;
+        fin;
+    fin;
+
+	define-nueva-instruccion infinito como inicio
+    	mientras frente-libre hacer inicio
+        	avanza;
+        fin;
+	fin;
+    
+    define-nueva-instruccion orientar como inicio
+    	si orientado-al-norte entonces inicio
+        	gira-derecha;
+        fin;
+        si orientado-al-sur entonces inicio
+        	gira-izquierda;
+        fin;
+        si orientado-al-oeste entonces inicio
+        	gira-izquierda;
+            gira-izquierda;
+        fin;
+        infinito;
+        si frente-bloqueado entonces inicio
+        	gira-derecha;
+            infinito;
+            gira-derecha;
+        fin;
+	fin;
+    
+    define-nueva-instruccion caminar como inicio
+    	mientras frente-libre hacer inicio
+     		si junto-a-zumbador entonces inicio
+        		coge-zumbador;
+        	fin;
+        	avanza;
+     	fin;
+        si orientado-al-oeste y frente-bloqueado entonces inicio
+           si derecha-libre entonces inicio
+              si junto-a-zumbador entonces inicio
+                  coge-zumbador;
+              fin;
+              gira-derecha;
+              avanza;
+              gira-derecha;
+          fin;
+        fin;
+        si orientado-al-este y frente-bloqueado entonces inicio
+          si izquierda-libre entonces inicio
+              si junto-a-zumbador entonces inicio
+                  coge-zumbador;
+              fin;
+              gira-izquierda;
+              avanza;
+              gira-izquierda
+          fin;
+        fin;
+    fin;
+
+	define-nueva-instruccion ubicarPuestoFinal como inicio
+    	si frente-bloqueado y derecha-bloqueada entonces inicio
+    		gira-izquierda;
+        	gira-izquierda;
+        	infinito;
+            mientras algun-zumbador-en-la-mochila hacer inicio
+            	deja-zumbador;
+            fin;
+        fin;
+    fin;
+
+    inicia-ejecucion
+        orientar;
+        mientras frente-libre hacer inicio
+        	caminar;
+        fin;
+        ubicarPuestoFinal
+        
+    termina-ejecucion
+finalizar-programa

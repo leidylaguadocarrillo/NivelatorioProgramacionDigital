@@ -1,0 +1,35 @@
+iniciar-programa
+	define-nueva-instruccion gira-derecha como inicio
+    	repetir 3 veces inicio
+        	gira-izquierda;
+        fin;
+    fin;
+    
+    define-nueva-instruccion caminar como inicio
+    	mientras junto-a-zumbador hacer inicio
+        	si frente-bloqueado y derecha-bloqueada entonces inicio
+        		apagate;
+            fin
+            sino inicio
+        		avanza;
+            fin;
+        fin;
+        gira-derecha;
+        avanza;
+        deja-zumbador;
+        gira-derecha;
+        mientras frente-libre hacer inicio
+        	avanza;
+            deja-zumbador;
+        fin;
+        gira-izquierda;
+        gira-izquierda;
+    fin;
+    
+    inicia-ejecucion
+    	deja-zumbador;
+        mientras frente-libre hacer inicio
+        	caminar;
+        fin;     
+    termina-ejecucion
+finalizar-programa
