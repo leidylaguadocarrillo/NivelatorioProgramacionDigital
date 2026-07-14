@@ -1,5 +1,5 @@
 Algoritmo Ejercicio_3
-	Definir numeroUsuario, iterador, contador Como Entero
+	Definir numeroUsuario, iterador, sumaResiduoCero Como Entero
 	
 	Escribir "Ingresa un numero: "
 	Leer numeroUsuario
